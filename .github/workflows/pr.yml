@@ -8,24 +8,34 @@ on:
 
 jobs:
   build:
+    name: "iOS ${{ matrix.sdk }}"
+
     runs-on: macos-12
 
     strategy:
       matrix:
-        ios: ['12.4', '13.7', '14.5']
+        include:
+          - sdk: "14.5"
+            destination: platform=iOS Simulator,OS=14.5,name=iPad (8th generation)
+
+          - sdk: "15.0"
+            destination: platform=iOS Simulator,OS=15.0,name=iPhone 8
+
+          - sdk: "16.2"
+            destination: platform=iOS Simulator,OS=16.2,name=iPhone 8
 
     steps:
       - name: Check Xcode version
         run: xcodebuild -version
 
-      - name: Install iOS simulator
-        run: |
-         brew install xcodesorg/made/xcodes
-         sudo xcodes runtimes install "iOS ${{ matrix.ios }}"
-         xcodes runtimes
+      - name: Install xcodes
+        run: brew install aria2 robotsandpencils/made/xcodes
+
+      - name: Install iOS ${{ matrix.sdk }}
+        run: sudo xcodes runtimes install "iOS ${{ matrix.sdk }}"
 
       - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Test with xcodebuild
-        run: xcodebuild -project my-app/my-app.xcodeproj -scheme my-appTests -destination "platform=iOS Simulator,OS=${{ matrix.ios }},name=iPhone 13" test
+        run: xcodebuild -project my-app/my-app.xcodeproj -scheme my-appTests -destination "${{ matrix.destination }}" build test
