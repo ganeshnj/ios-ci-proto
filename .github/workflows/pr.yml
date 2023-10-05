@@ -15,14 +15,14 @@ jobs:
     strategy:
       matrix:
         include:
+          - sdk: "12.4"
+            destination: platform=iOS Simulator,OS=12.4,name=iPad (8th generation)
+
+          - sdk: "13.7"
+            destination: platform=iOS Simulator,OS=13.7,name=iPhone 8
+
           - sdk: "14.5"
-            destination: platform=iOS Simulator,OS=14.5,name=iPad (8th generation)
-
-          - sdk: "15.0"
-            destination: platform=iOS Simulator,OS=15.0,name=iPhone 8
-
-          - sdk: "16.2"
-            destination: platform=iOS Simulator,OS=16.2,name=iPhone 8
+            destination: platform=iOS Simulator,OS=14.5,name=iPhone 8
 
     steps:
       - name: Check Xcode version
