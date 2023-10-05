@@ -29,7 +29,7 @@ jobs:
         run: xcodebuild -version
 
       - name: Install xcodes
-        run: brew install aria2 robotsandpencils/made/xcodes
+        run: brew install robotsandpencils/made/xcodes
 
       - name: Install iOS ${{ matrix.sdk }}
         run: sudo xcodes runtimes install "iOS ${{ matrix.sdk }}"
