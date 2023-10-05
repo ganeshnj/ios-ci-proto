@@ -21,7 +21,7 @@ jobs:
       - name: Install iOS simulator
         run: |
          brew install xcodesorg/made/xcodes
-         xcodes runtimes install "iOS ${{ matrix.ios }}"
+         sudo xcodes runtimes install "iOS ${{ matrix.ios }}"
 
       - name: Checkout repository
         uses: actions/checkout@v2
