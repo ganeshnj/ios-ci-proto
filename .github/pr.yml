@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        ios: ['15.0', '16.0']
+        ios: ['14.0', '15.0', '16.0']
 
     steps:
       - name: Check Xcode version
