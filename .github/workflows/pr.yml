@@ -23,6 +23,9 @@ jobs:
          brew install aria2 xcodesorg/made/xcodes
          sudo xcodes runtimes install "iOS ${{ matrix.ios }}"
          xcodes runtimes
+         developer_path=$(xcode-select -p)
+         sudo mkdir -p /Library/Developer/CoreSimulator/Profiles/Runtimes
+         sudo cp -r $developer_path/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS\ ${{ matrix.ios }}.simruntime
 
       - name: Checkout repository
         uses: actions/checkout@v2
