@@ -40,5 +40,10 @@ jobs:
     - name: Install iOS ${{ matrix.sdk }}
       run: sudo xcodes runtimes install "iOS ${{ matrix.sdk }}"
 
+    - name: Setup Simulator
+      run: |
+        sudo mkdir -p /Library/Developer/CoreSimulator/Profiles/Runtimes
+        /Applications/Xcode_${{ env.xcode_version }}.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS\ ${{ matrix.sdk }}.simruntime
+
     - name: Build & Test
       run: xcodebuild -project my-app/my-app.xcodeproj -scheme my-appTests -destination "${{ matrix.destination }}" build test
