@@ -1,10 +1,10 @@
-name: main
+name: Tests
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
 
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
     runs-on: macos-12
 
     strategy:
-      fail-fast: false # Don’t fail-fast so that we get all snapshot test changes
+      # fail-fast: false # Don’t fail-fast so that we get all snapshot test changes
       matrix:
         include:
           - sdk: "14.5"
